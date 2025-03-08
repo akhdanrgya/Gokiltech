@@ -14,11 +14,11 @@ const Hero = () => {
             <section className="flex flex-col items-center justify-center w-full h-5/6">
                 <div className="absolute h-full opacity-10">
                     <Squares
-                        speed={0.5}
-                        squareSize={40}
+                        speed={0.3}
+                        squareSize={50}
                         direction="diagonal"
                         borderColor={borderColor}
-                        hoverFillColor="#222"
+                        hoverFillColor="#9F06A7"
                     />
                 </div>
 
@@ -27,10 +27,8 @@ const Hero = () => {
                     <div className="text-4xl">
                         <h1>Hello</h1>
                         <h1>We Are <span className="text-purple">Gokiltech!</span></h1>
-                        <div className="flex flex-row gap-2">
-                            <h1>Where Tech Meets</h1>
                             <RotatingText
-                                texts={['Creativity', 'Inovation']}
+                                texts={['IT Support','Web Developer', 'UI/UX', 'Mobile APP', 'AI', 'Machine Learning', 'Cloud Solution', '3D Artist', 'VFX']}
                                 mainClassName="overflow-hidden"
                                 staggerFrom={"last"}
                                 initial={{y: "100%"}}
@@ -41,7 +39,6 @@ const Hero = () => {
                                 transition={{type: "spring", damping: 30, stiffness: 400}}
                                 rotationInterval={2000}
                             />
-                        </div>
                     </div>
                     <div className="text-xs">
                         <p>community of developers and <span className="text-purple">tech</span> enthusiasts exploring,

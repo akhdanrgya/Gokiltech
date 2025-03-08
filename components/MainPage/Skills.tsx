@@ -20,8 +20,8 @@ const Skills = () => {
                 </div>
             </div>
                 <FallingText
-                    text={`React Python Node JavaScript Laravel API Tailwind GIT NODE StyledComponents Next.JS Figma HTML CSS`}
-                    highlightWords={["React", "Node", "JavaScript", "Tailwind", "Next.JS"]}
+                    text={`React Python Node JavaScript Laravel API Tailwind GIT NODE StyledComponents Next.JS Figma HTML CSS AfterEffect Blender PhotoShop Illustrator`}
+                    highlightWords={["React", "Node", "JavaScript", "Tailwind", "Next.JS", "Blender"]}
                     highlightClass="highlighted"
                     trigger="hover"
                     backgroundColor="transparent"
