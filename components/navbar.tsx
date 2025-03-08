@@ -1,3 +1,5 @@
+"use client"
+
 import {
     Navbar as HeroUINavbar,
     NavbarContent,
@@ -15,6 +17,7 @@ import {link as linkStyles} from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 import {Image} from "@heroui/image";
+import {useTheme} from "next-themes";
 
 import {siteConfig} from "@/config/site";
 import {ThemeSwitch} from "@/components/theme-switch";
@@ -26,8 +29,23 @@ import {
     SearchIcon,
     Logo,
 } from "@/components/icons";
+import {useEffect, useState} from "react";
 
 export const Navbar = () => {
+
+    const { resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const logoSrc = !mounted
+        ? "/LogoWhite.png"
+        : resolvedTheme === "dark"
+            ? "/LogoWhite.png"
+            : "/LogoBlack.png"
+
     const searchInput = (
         <Input
             aria-label="Search"
@@ -55,7 +73,7 @@ export const Navbar = () => {
                 <NavbarBrand as="li" className="gap-3 max-w-fit">
                     <NextLink className="flex justify-start items-center gap-1" href="/">
                         <Image
-                        src="/LogoWhite.png"
+                        src={logoSrc}
                         alt="Logo Gokiltech"
                         height={100}
                         />

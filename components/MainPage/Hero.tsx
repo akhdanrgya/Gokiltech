@@ -1,7 +1,7 @@
 const Hero = () => {
     return (
         <section className="flex flex-col items-center justify-center w-full h-1/2">
-            <div className="flex flex-col items-start gap-4">
+            <div className="flex flex-col items-start gap-6">
                 <div className="text-4xl">
                     <h1>Hello</h1>
                     <h1>We Are <span className="text-purple">Gokiltech!</span></h1>
