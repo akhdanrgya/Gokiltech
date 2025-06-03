@@ -21,16 +21,22 @@
   "@heroui/switch": "2.2.12",
   "@heroui/system": "2.4.10",
   "@heroui/theme": "2.4.9",
+  "@payloadcms/db-postgres": "^3.40.0",
+  "@payloadcms/next": "^3.40.0",
+  "@payloadcms/richtext-lexical": "^3.40.0",
   "@react-aria/ssr": "3.9.7",
   "@react-aria/visually-hidden": "3.8.19",
   "clsx": "2.1.1",
   "framer-motion": "11.13.1",
+  "graphql": "^16.11.0",
   "intl-messageformat": "^10.5.0",
   "matter-js": "^0.20.0",
   "next": "15.0.4",
   "next-themes": "^0.4.4",
+  "payload": "^3.40.0",
   "react": "18.3.1",
-  "react-dom": "18.3.1"
+  "react-dom": "18.3.1",
+  "sharp": "^0.34.2"
  },
  "devDependencies": {
   "@next/eslint-plugin-next": "15.0.4",
