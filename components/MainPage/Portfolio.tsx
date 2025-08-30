@@ -52,10 +52,10 @@ const Portfolio: React.FC = () => {
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {/* PERUBAHAN: Menambahkan container flex-col untuk judul dan tombol */}
                 <div className="flex flex-col items-center">
-                  <h3 className="text-xl font-bold text-white text-center p-2">
+                  <h3 className="text-xl font-bold text-white  text-center p-2">
                     {item.title}
                   </h3>
-                  <button className="mt-2 px-4 py-2 border border-white text-sm rounded-lg font-semibold hover:bg-purple transition rounded-3xl">
+                  <button className="mt-2 px-4 py-2 border border-white text-sm text-white rounded-lg font-semibold hover:bg-purple transition rounded-3xl">
                     Lihat Detail
                   </button>
                 </div>
@@ -67,7 +67,7 @@ const Portfolio: React.FC = () => {
           {/* PERBAIKAN: Menggunakan tag <a> standar untuk mengatasi error import Link */}
           <a
             href="/portfolio"
-            className="px-6 py-3 border border-white rounded-3xl font-semibold hover:bg-purple transition"
+            className="px-6 py-3 border border-white dark:border-black rounded-3xl font-semibold hover:bg-purple transition"
           >
             See More
           </a>

@@ -52,7 +52,7 @@ const Team = () => {
           </h1>
         </div>
 
-        <div style={{ height: "600px", position: "relative" }}>
+        <div style={{ position: "relative" }}>
           <ChromaGrid
             items={items}
             radius={300}
