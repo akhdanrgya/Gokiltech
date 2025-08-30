@@ -42,7 +42,7 @@ const Team = () => {
   ];
   return (
     <section className="px-6 flex justify-center bg-black dark:bg-white py-24">
-      <div className="flex flex-col justify-center gap-4">
+      <div className="flex flex-col justify-center gap-24">
         <div className="justify-center items-center">
           <p className="text-sm text-center font-semibold text-purple uppercase mb-2">
             OUR TEAMS

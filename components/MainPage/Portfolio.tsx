@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "@heroui/image";
 
 // Karena ada masalah dengan import, kita akan mendefinisikan SpotlightCard
 // sebagai div biasa dan Link sebagai anchor tag <a> standar untuk sementara.
@@ -29,7 +30,7 @@ const portfolios = [
 const Portfolio: React.FC = () => {
   return (
     <section
-      className="py-16 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
+      className="py-24 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
       id="portfolio"
     >
       <div className="container mx-auto px-4">
