@@ -2,7 +2,7 @@ import FallingText from "@/components/FallingText";
 
 const Skills = () => {
   return (
-    <section className="flex flex-col items-center justify-center w-full h-5/6 px-6 mt-24">
+    <section className="flex flex-col items-center justify-start h-1/2 px-6 my-24">
       <div className="container flex flex-col items-center gap-10 mb-16 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
           Skills and <span className="text-purple">Tools</span>
