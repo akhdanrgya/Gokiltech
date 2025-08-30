@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Image } from "@heroui/image";
+import FocusText from "@/components/FocusText";
 
 const About = () => {
   const { resolvedTheme } = useTheme();
@@ -26,7 +27,17 @@ const About = () => {
             ABOUT US
           </p>
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-            Who is <span className="text-purple">Gokil Tech</span>?
+            Who is{" "}
+            <span className="text-purple">
+              <FocusText
+                sentence="Gokil Tech?"
+                manualMode={false}
+                blurAmount={5}
+                borderColor="purple"
+                animationDuration={2}
+                pauseBetweenAnimations={1}
+              />
+            </span>
           </h1>
           <div className="w-20 h-1 bg-purple mb-8"></div>
           {/* Garis bawah ala siagatekno.id */}
