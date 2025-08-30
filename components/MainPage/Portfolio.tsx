@@ -1,70 +1,126 @@
+"use client";
+
 import React from "react";
 
-// Karena ada masalah dengan import, kita akan mendefinisikan SpotlightCard
-// sebagai div biasa dan Link sebagai anchor tag <a> standar untuk sementara.
+// Interface untuk tipe data item portofolio, agar konsisten
+export interface ChromaItem {
+  image: string;
+  title: string;
+  subtitle: string;
+  borderColor?: string;
+  gradient?: string;
+  url?: string;
+}
 
-const portfolios = [
+// Data portofolio disesuaikan dengan struktur ChromaItem
+const portfolioData: ChromaItem[] = [
   {
+    image: "/images/portfolio/speunpadsc.png",
     title: "Estima Reka Sakti",
-    image: "/images/portfolio/speunpadsc.png",
-    alt: "Project 1",
+    subtitle: "Website Development",
+    borderColor: "#3B82F6",
+    gradient: "linear-gradient(145deg, #3B82F6, #000)",
+    url: "/portfolio", // Ganti dengan URL proyek yang sebenarnya
   },
   {
+    image: "/images/portfolio/speunpadsc.png",
     title: "SPE Unpad Student Chapter",
-    image: "/images/portfolio/speunpadsc.png",
-    alt: "Project 2",
+    subtitle: "Website Development",
+    borderColor: "#C502FF",
+    gradient: "linear-gradient(180deg, #C502FF, #000)",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
   {
+    image: "/images/portfolio/speunpadsc.png",
     title: "NU Care Jakarta Selatan",
-    image: "/images/portfolio/speunpadsc.png",
-    alt: "Project 3",
+    subtitle: "Mobile App Development",
+    borderColor: "#10B981",
+    gradient: "linear-gradient(180deg, #10B981, #000)",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
   {
-    title: "Batara",
     image: "/images/portfolio/speunpadsc.png",
-    alt: "Project 4",
+    title: "Batara",
+    subtitle: "UI/UX Design",
+    borderColor: "#D61B1F",
+    gradient: "linear-gradient(180deg, #D61B1F, #000)",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
 ];
 
 const Portfolio: React.FC = () => {
+  // Handler untuk membuka URL di tab baru saat kartu diklik
+  const handleCardClick = (url?: string) => {
+    if (url) window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  // Handler untuk efek spotlight saat mouse bergerak di atas kartu
+  const handleCardMove: React.MouseEventHandler<HTMLElement> = (e) => {
+    const c = e.currentTarget as HTMLElement;
+    const rect = c.getBoundingClientRect();
+    c.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+    c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+  };
+
   return (
     <section
       className="py-16 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
       id="portfolio"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-8">Portfolio</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
-          {portfolios.map((item, idx) => (
-            // PERBAIKAN: Menggunakan div sebagai pengganti SpotlightCard untuk mengatasi error import
-            <div
-              key={idx}
-              className="group custom-spotlight-card relative flex items-center justify-center overflow-hidden rounded-sm"
+        <h2 className="text-5xl font-bold text-center mb-10">Portfolio</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+          {portfolioData.map((c, i) => (
+            <article
+              key={i}
+              role="button"
+              tabIndex={0}
+              onMouseMove={handleCardMove}
+              onClick={() => handleCardClick(c.url)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") handleCardClick(c.url);
+              }}
+              className="group relative flex flex-col rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+              style={
+                {
+                  "--card-border": c.borderColor || "transparent",
+                  background: c.gradient,
+                  "--spotlight-color": "rgba(255,255,255,0.3)",
+                } as React.CSSProperties
+              }
             >
-              <div className="w-full h-48">
+              {/* Efek spotlight */}
+              <div
+                className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
+                style={{
+                  background:
+                    "radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)",
+                }}
+              />
+              {/* Efek masking grayscale */}
+              <div
+                className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+                style={{
+                  backdropFilter: "grayscale(1)",
+                  WebkitBackdropFilter: "grayscale(1)",
+                }}
+              />
+              <div className="relative z-10 flex-1 p-[10px] box-border">
                 <img
-                  src={item.image}
-                  alt={item.alt}
-                  className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  loading={idx === 0 ? "eager" : "lazy"}
+                  src={c.image}
+                  alt={c.title}
+                  loading="lazy"
+                  className="w-full h-64 object-cover rounded-[10px]"
                 />
               </div>
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {/* PERUBAHAN: Menambahkan container flex-col untuk judul dan tombol */}
-                <div className="flex flex-col items-center">
-                  <h3 className="text-xl font-bold text-white  text-center p-2">
-                    {item.title}
-                  </h3>
-                  <button className="mt-2 px-4 py-2 border border-white text-sm text-white rounded-lg font-semibold hover:bg-purple transition rounded-3xl">
-                    Lihat Detail
-                  </button>
-                </div>
-              </div>
-            </div>
+              <footer className="relative z-10 p-3 text-white font-sans">
+                <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
+                <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
+              </footer>
+            </article>
           ))}
         </div>
         <div className="flex justify-center">
-          {/* PERBAIKAN: Menggunakan tag <a> standar untuk mengatasi error import Link */}
           <a
             href="/portfolio"
             className="px-6 py-3 border border-white dark:border-black rounded-3xl font-semibold hover:bg-purple transition"
