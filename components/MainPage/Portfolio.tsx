@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Image } from "@heroui/image";
 
 // Interface untuk tipe data item portofolio, agar konsisten
 export interface ChromaItem {
@@ -64,7 +65,7 @@ const Portfolio: React.FC = () => {
 
   return (
     <section
-      className="py-16 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
+      className="py-24 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
       id="portfolio"
     >
       <div className="container mx-auto px-4">
