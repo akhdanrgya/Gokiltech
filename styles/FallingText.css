@@ -1,7 +1,7 @@
 .falling-text-container {
     position: relative;
     z-index: 1;
-    width: 100%;
+    width: 50%;
     height: 25%;
     cursor: pointer;
     text-align: center;
