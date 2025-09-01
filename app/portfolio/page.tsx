@@ -1,64 +1,10 @@
 "use client";
 
 import React from "react";
-
-// Karena logika grid sekarang ditangani langsung di halaman ini,
-// kita tidak perlu lagi mengimpor ChromaGrid.
-
-// Interface untuk tipe data item portofolio
-export interface ChromaItem {
-  image: string;
-  title: string;
-  subtitle: string;
-  borderColor?: string;
-  gradient?: string;
-  url?: string;
-}
-
-// Anda bisa menambahkan semua proyek portofolio Anda di sini
-const portfolioData: ChromaItem[] = [
-  {
-    image: "/images/portfolio/speunpadsc.png",
-    title: "SPE Unpad Student Chapter",
-    subtitle: "Website Development",
-    borderColor: "#3B82F6",
-    gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
-  },
-  {
-    image: "/images/portfolio/speunpadsc.png",
-    title: "Project 2",
-    subtitle: "UI/UX Design",
-    borderColor: "#C502FF",
-    gradient: "linear-gradient(180deg, #C502FF, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
-  },
-  {
-    image: "/images/portfolio/speunpadsc.png",
-    title: "Project 3",
-    subtitle: "Mobile App Development",
-    borderColor: "#10B981",
-    gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
-  },
-  {
-    image: "/images/portfolio/speunpadsc.png",
-    title: "Project 4",
-    subtitle: "Data Science Project",
-    borderColor: "#D61B1F",
-    gradient: "linear-gradient(180deg, #D61B1F, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
-  },
-  // Tambahkan lebih banyak proyek di sini...
-];
+import Link from "next/link";
+import { portfolioData } from "@/data/portfolios";
 
 const PortfolioPage = () => {
-  // Handler untuk membuka URL di tab baru saat kartu diklik
-  const handleCardClick = (url?: string) => {
-    if (url) window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  // Handler untuk efek spotlight saat mouse bergerak di atas kartu
   const handleCardMove: React.MouseEventHandler<HTMLElement> = (e) => {
     const c = e.currentTarget as HTMLElement;
     const rect = c.getBoundingClientRect();
@@ -80,19 +26,13 @@ const PortfolioPage = () => {
         </p>
       </div>
 
-      {/* Grid container untuk item portofolio */}
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
         {portfolioData.map((c, i) => (
-          <article
+          <Link
+            href={`/portfolio/${c.slug}`}
             key={i}
-            role="button"
-            tabIndex={0}
-            onMouseMove={handleCardMove}
-            onClick={() => handleCardClick(c.url)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") handleCardClick(c.url);
-            }}
             className="group relative flex flex-col rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+            onMouseMove={handleCardMove}
             style={
               {
                 "--card-border": c.borderColor || "transparent",
@@ -129,7 +69,7 @@ const PortfolioPage = () => {
               <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
               <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
             </footer>
-          </article>
+          </Link>
         ))}
       </div>
     </section>

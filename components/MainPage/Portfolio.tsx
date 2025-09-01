@@ -11,7 +11,7 @@ export interface ChromaItem {
   subtitle: string;
   borderColor?: string;
   gradient?: string;
-  url?: string;
+  slug?: string;
 }
 
 // Data portofolio disesuaikan dengan struktur ChromaItem
@@ -22,7 +22,7 @@ const portfolioData: ChromaItem[] = [
     subtitle: "Website Development",
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "/portfolio", // Ganti dengan URL proyek yang sebenarnya
+    slug: "estima",
   },
   {
     image: "/images/portfolio/speunpadsc.png",
@@ -30,7 +30,7 @@ const portfolioData: ChromaItem[] = [
     subtitle: "Website Development",
     borderColor: "#C502FF",
     gradient: "linear-gradient(180deg, #C502FF, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "speunpadsc",
   },
   {
     image: "/images/portfolio/speunpadsc.png",
@@ -38,7 +38,7 @@ const portfolioData: ChromaItem[] = [
     subtitle: "Mobile App Development",
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "nu-care-jakarta-selatan",
   },
   {
     image: "/images/portfolio/speunpadsc.png",
@@ -46,14 +46,15 @@ const portfolioData: ChromaItem[] = [
     subtitle: "UI/UX Design",
     borderColor: "#D61B1F",
     gradient: "linear-gradient(180deg, #D61B1F, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "batara",
   },
 ];
 
 const Portfolio: React.FC = () => {
-  // Handler untuk membuka URL di tab baru saat kartu diklik
-  const handleCardClick = (url?: string) => {
-    if (url) window.open(url, "_blank", "noopener,noreferrer");
+  // Handler untuk membuka slug di tab baru saat kartu diklik
+  const handleCardClick = (slug?: string) => {
+    if (slug)
+      window.open(`/portfolio/${slug}`, "_blank", "noopener,noreferrer");
   };
 
   // Handler untuk efek spotlight saat mouse bergerak di atas kartu
@@ -80,9 +81,9 @@ const Portfolio: React.FC = () => {
               role="button"
               tabIndex={0}
               onMouseMove={handleCardMove}
-              onClick={() => handleCardClick(c.url)}
+              onClick={() => handleCardClick(c.slug)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") handleCardClick(c.url);
+                if (e.key === "Enter" || e.key === " ") handleCardClick(c.slug);
               }}
               className="group relative flex flex-col rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
               style={
