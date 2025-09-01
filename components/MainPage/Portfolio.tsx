@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Image } from "@heroui/image";
+import GradientText from "@/components/GradientText";
 
 // Interface untuk tipe data item portofolio, agar konsisten
 export interface ChromaItem {
@@ -69,7 +70,9 @@ const Portfolio: React.FC = () => {
       id="portfolio"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-10">Portfolio</h2>
+        <h2 className="text-5xl font-bold text-center mb-14">
+          Our <span className="text-purple">Works</span>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
           {portfolioData.map((c, i) => (
             <article
@@ -122,12 +125,14 @@ const Portfolio: React.FC = () => {
           ))}
         </div>
         <div className="flex justify-center">
-          <a
-            href="/portfolio"
-            className="px-6 py-3 border border-white dark:border-black rounded-3xl font-semibold hover:bg-purple transition"
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={true}
+            className="custom-class px-6 py-3 border rounded-3xl font-semibold transition"
           >
-            See More
-          </a>
+            See More!
+          </GradientText>
         </div>
       </div>
     </section>

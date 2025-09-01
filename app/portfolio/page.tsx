@@ -70,14 +70,13 @@ const PortfolioPage = () => {
     <section className="px-6 py-8 flex flex-col items-center">
       <div className="text-center mb-12">
         <p className="text-sm font-semibold text-purple uppercase mb-2">
-          MY WORK
+          GOKILTECH WORK
         </p>
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-          Portfolio
+          Port<span className="text-purple">folio</span>
         </h1>
         <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-          Berikut adalah kumpulan beberapa proyek yang pernah saya kerjakan,
-          menampilkan keahlian saya di berbagai bidang.
+          These are projects that GokilTech worked on recently.
         </p>
       </div>
 

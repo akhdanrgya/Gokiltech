@@ -24,7 +24,7 @@ const Team = () => {
     {
       image: "/images/profile/elvira.jpeg",
       title: "Elvira Zaretti",
-      subtitle: "UI/UX",
+      subtitle: "UI/UX Designer",
       handle: "@elvira",
       borderColor: "#10B981",
       gradient: "linear-gradient(180deg, #10B981, #000)",
