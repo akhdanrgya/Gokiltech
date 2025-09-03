@@ -62,17 +62,10 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({ items, className = "" }) => {
       className={`relative w-full h-full flex flex-wrap justify-center items-start gap-3 ${className}`}
     >
       {data.map((c, i) => (
-        <article
+        <button
           key={i}
-          role="button"
-          tabIndex={0}
           onMouseMove={handleCardMove}
           onClick={() => handleCardClick(c.url)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              handleCardClick(c.url);
-            }
-          }}
           className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
           style={
             {
@@ -123,7 +116,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({ items, className = "" }) => {
               </span>
             )}
           </footer>
-        </article>
+        </button>
       ))}
       {/* PERBAIKAN: Dua div untuk masking global di sini telah dihapus */}
     </div>
