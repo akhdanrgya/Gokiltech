@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { Image } from "@heroui/image";
-import GradientText from "@/components/GradientText";
 
 // Interface untuk tipe data item portofolio, agar konsisten
 export interface ChromaItem {
@@ -11,7 +9,7 @@ export interface ChromaItem {
   subtitle: string;
   borderColor?: string;
   gradient?: string;
-  slug?: string;
+  url?: string;
 }
 
 // Data portofolio disesuaikan dengan struktur ChromaItem
@@ -22,7 +20,7 @@ const portfolioData: ChromaItem[] = [
     subtitle: "Website Development",
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    slug: "estima",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
   {
     image: "/images/portfolio/speunpadsc.png",
@@ -30,7 +28,7 @@ const portfolioData: ChromaItem[] = [
     subtitle: "Website Development",
     borderColor: "#C502FF",
     gradient: "linear-gradient(180deg, #C502FF, #000)",
-    slug: "speunpadsc",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
   {
     image: "/images/portfolio/speunpadsc.png",
@@ -38,7 +36,7 @@ const portfolioData: ChromaItem[] = [
     subtitle: "Mobile App Development",
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    slug: "nu-care-jakarta-selatan",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
   {
     image: "/images/portfolio/speunpadsc.png",
@@ -46,15 +44,14 @@ const portfolioData: ChromaItem[] = [
     subtitle: "UI/UX Design",
     borderColor: "#D61B1F",
     gradient: "linear-gradient(180deg, #D61B1F, #000)",
-    slug: "batara",
+    url: "#", // Ganti dengan URL proyek yang sebenarnya
   },
 ];
 
 const Portfolio: React.FC = () => {
-  // Handler untuk membuka slug di tab baru saat kartu diklik
-  const handleCardClick = (slug?: string) => {
-    if (slug)
-      window.open(`/portfolio/${slug}`, "_blank", "noopener,noreferrer");
+  // Handler untuk membuka URL di tab baru saat kartu diklik
+  const handleCardClick = (url?: string) => {
+    if (url) window.open(url, "_blank", "noopener,noreferrer");
   };
 
   // Handler untuk efek spotlight saat mouse bergerak di atas kartu
@@ -67,25 +64,19 @@ const Portfolio: React.FC = () => {
 
   return (
     <section
-      className="py-24 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
+      className="py-16 bg-black dark:bg-white text-white dark:text-black transition-colors duration-300"
       id="portfolio"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-14">
-          Our <span className="text-purple">Works</span>
-        </h2>
+        <h2 className="text-5xl font-bold text-center mb-10">Portfolio</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
           {portfolioData.map((c, i) => (
-            <article
+            // PERBAIKAN: Mengganti <article> dengan <button> untuk aksesibilitas
+            <button
               key={i}
-              role="button"
-              tabIndex={0}
               onMouseMove={handleCardMove}
-              onClick={() => handleCardClick(c.slug)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") handleCardClick(c.slug);
-              }}
-              className="group relative flex flex-col rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+              onClick={() => handleCardClick(c.url)}
+              className="group relative flex flex-col text-left rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
               style={
                 {
                   "--card-border": c.borderColor || "transparent",
@@ -122,18 +113,16 @@ const Portfolio: React.FC = () => {
                 <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
                 <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
               </footer>
-            </article>
+            </button>
           ))}
         </div>
         <div className="flex justify-center">
-          <GradientText
-            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-            animationSpeed={3}
-            showBorder={true}
-            className="custom-class px-6 py-3 border rounded-3xl font-semibold transition"
+          <a
+            href="/portfolio"
+            className="px-6 py-3 border border-white dark:border-black rounded-3xl font-semibold hover:bg-purple transition"
           >
-            See More!
-          </GradientText>
+            See More
+          </a>
         </div>
       </div>
     </section>
