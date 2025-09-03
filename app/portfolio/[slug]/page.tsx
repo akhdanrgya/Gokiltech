@@ -2,16 +2,19 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolios";
 
+interface PortfolioDetailProps {
+  params: Promise<{ slug: string }>;
+}
+
 export async function generateStaticParams() {
   return portfolioData.map((p) => ({ slug: p.slug }));
 }
 
-export default function PortfolioDetail({
+export default async function PortfolioDetail({
   params,
-}: {
-  params: { slug: string };
-}) {
-  const project = portfolioData.find((p) => p.slug === params.slug);
+}: PortfolioDetailProps) {
+  const { slug } = await params;
+  const project = portfolioData.find((p) => p.slug === slug);
 
   if (!project) return notFound();
 

@@ -9,49 +9,55 @@ export interface ChromaItem {
   subtitle: string;
   borderColor?: string;
   gradient?: string;
-  url?: string;
+  slug: string;
+  description: string;
 }
 
 // Data portofolio disesuaikan dengan struktur ChromaItem
 const portfolioData: ChromaItem[] = [
   {
     image: "/images/portfolio/speunpadsc.png",
-    title: "Estima Reka Sakti",
+    title: "SPE Unpad Student Chapter",
     subtitle: "Website Development",
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "spe-unpad-sc",
+    description: "Website organisasi mahasiswa SPE Unpad Student Chapter.",
   },
   {
     image: "/images/portfolio/speunpadsc.png",
-    title: "SPE Unpad Student Chapter",
-    subtitle: "Website Development",
+    title: "Project 2",
+    subtitle: "UI/UX Design",
     borderColor: "#C502FF",
     gradient: "linear-gradient(180deg, #C502FF, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "project-2",
+    description: "Project desain UI/UX untuk aplikasi mobile.",
   },
   {
     image: "/images/portfolio/speunpadsc.png",
-    title: "NU Care Jakarta Selatan",
+    title: "Project 3",
     subtitle: "Mobile App Development",
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "project-3",
+    description: "Aplikasi mobile dengan React Native.",
   },
   {
     image: "/images/portfolio/speunpadsc.png",
-    title: "Batara",
-    subtitle: "UI/UX Design",
+    title: "Project 4",
+    subtitle: "Data Science Project",
     borderColor: "#D61B1F",
     gradient: "linear-gradient(180deg, #D61B1F, #000)",
-    url: "#", // Ganti dengan URL proyek yang sebenarnya
+    slug: "project-4",
+    description: "Proyek analisis data dengan Python dan ML.",
   },
 ];
 
 const Portfolio: React.FC = () => {
   // Handler untuk membuka URL di tab baru saat kartu diklik
-  const handleCardClick = (url?: string) => {
-    if (url) window.open(url, "_blank", "noopener,noreferrer");
+  const handleCardClick = (slug?: string) => {
+    if (slug)
+      window.open(`/portfolio/${slug}`, "_blank", "noopener,noreferrer");
   };
 
   // Handler untuk efek spotlight saat mouse bergerak di atas kartu
@@ -75,7 +81,7 @@ const Portfolio: React.FC = () => {
             <button
               key={i}
               onMouseMove={handleCardMove}
-              onClick={() => handleCardClick(c.url)}
+              onClick={() => handleCardClick(c.slug)}
               className="group relative flex flex-col text-left rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
               style={
                 {
