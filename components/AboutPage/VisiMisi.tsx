@@ -1,5 +1,3 @@
-// components/VisiMisi.jsx
-
 const content = [
   {
     type: "vision",
