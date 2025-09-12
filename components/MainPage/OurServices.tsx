@@ -2,7 +2,7 @@ import React from "react";
 import {
   CommandLineIcon,
   DevicePhoneMobileIcon,
-  CloudArrowUpIcon,
+  CubeIcon,
 } from "@heroicons/react/24/outline";
 
 const servicesData = [
@@ -19,10 +19,10 @@ const servicesData = [
       "In a mobile-first world, we ensure your website and apps look perfect on all screen sizes, from smartphones to tablets, to reach all your users.",
   },
   {
-    icon: CloudArrowUpIcon,
-    title: "Cloud & DevOps Solutions",
+    icon: CubeIcon,
+    title: "AI Development",
     description:
-      "Speed up your development cycle with automation. We provide CI/CD, cloud deployment, and efficient infrastructure so you can focus on coding.",
+      "Propel your business into the future with AI solutions. From intelligent automation to deep data insights, we unlock unmatched efficiency.",
   },
 ];
 
