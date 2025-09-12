@@ -1,9 +1,6 @@
-// components/Footer.tsx
-
-"use client"; // Add this line for the onClick event to work in Next.js App Router
+"use client";
 
 import React from "react";
-// Importing specific icons from the Font Awesome set in react-icons
 import {
   FaFacebookF,
   FaTwitter,
@@ -39,15 +36,7 @@ const Footer = () => {
     { icon: FaInstagram, href: "#" },
   ];
 
-  const footerNavLinks = [
-    "Home",
-    "About",
-    "Services",
-    "Works",
-    "Blog",
-    "Careers",
-    "Contact",
-  ];
+  const footerNavLinks = ["Home", "About", "Portfolios", "Contact"];
 
   return (
     <footer className="bg-black text-gray-400 relative">
