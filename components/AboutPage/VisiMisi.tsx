@@ -69,17 +69,15 @@ const VisiMisi = () => {
               </h2>
 
               {section.description && (
-                <p className="text-gray-300 leading-relaxed">
-                  {section.description}
-                </p>
+                <p className="leading-relaxed">{section.description}</p>
               )}
 
               {section.items.length > 0 && (
                 <ul className="space-y-4">
                   {section.items.map((item) => (
                     <li key={item.title}>
-                      <h3 className="font-semibold text-white">{item.title}</h3>
-                      <p className="text-gray-400 text-sm">{item.text}</p>
+                      <h3 className="font-semibold">{item.title}</h3>
+                      <p className=" text-sm">{item.text}</p>
                     </li>
                   ))}
                 </ul>
