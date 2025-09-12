@@ -29,11 +29,11 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: FaFacebookF, href: "#" },
-    { icon: FaTwitter, href: "#" },
-    { icon: FaYoutube, href: "#" },
-    { icon: FaLinkedinIn, href: "#" },
-    { icon: FaInstagram, href: "#" },
+    { icon: FaFacebookF, href: "/" },
+    { icon: FaTwitter, href: "/" },
+    { icon: FaYoutube, href: "/" },
+    { icon: FaLinkedinIn, href: "/" },
+    { icon: FaInstagram, href: "/" },
   ];
 
   const footerNavLinks = ["Home", "About", "Portfolios", "Contact"];

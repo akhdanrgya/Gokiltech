@@ -67,7 +67,7 @@ const OurServices = () => {
               </div>
               <div className="mt-6">
                 <a
-                  href="#"
+                  href="/"
                   className="inline-block rounded-full border border-gray-600 px-6 py-2 text-sm font-semibold transition-colors duration-300 hover:bg-white hover:text-black"
                 >
                   Learn More
