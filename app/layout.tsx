@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +39,7 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
@@ -46,9 +47,7 @@ export default function RootLayout({
             <Navbar />
             <main>
               {children}
-              <footer className="w-full flex items-center justify-center py-3">
-                <p className="text-primary">Gokiltech</p>
-              </footer>
+              <Footer />
             </main>
           </div>
         </Providers>
