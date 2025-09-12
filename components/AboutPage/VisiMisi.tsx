@@ -62,9 +62,9 @@ const VisiMisi = () => {
           {content.map((section) => (
             <div
               key={section.title}
-              className={`bg-gray-800 p-8 rounded-lg ${section.type === "vision" ? "md:col-span-2 lg:col-span-1" : ""}`}
+              className={`p-8 ${section.type === "vision" ? "md:col-span-2 lg:col-span-1" : ""}`}
             >
-              <h2 className="text-2xl font-bold text-purple mb-4">
+              <h2 className="text-2xl font-bold text-purple mb-4 text-center">
                 {section.title}
               </h2>
 
