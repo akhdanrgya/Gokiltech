@@ -62,7 +62,7 @@ const Footer = () => {
             Jakarta 12630, Indonesia
           </p>
           <p className="mt-2">Phone: +62-823-1273-0909</p>
-          <p>Email: gokiltech.foundation@gmail.com</p>
+          <p>Email: info@gokiltech.com</p>
           {/* === SOCIAL MEDIA ICONS === */}
           <div className="flex space-x-4 mt-6">
             {socialLinks.map((social, index) => (
