@@ -98,6 +98,9 @@ export const Navbar = () => {
             ))}
           </ul>
           <ThemeSwitch />
+          <div>
+            <a className="cursor-pointer" href="/signin">Login</a>
+          </div>
         </NavbarItem>
       </NavbarContent>
 
