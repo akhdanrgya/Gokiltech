@@ -46,16 +46,10 @@ const DashboardPage = () => {
             <h1 className="text-3xl font-bold">Gokiltech Dashboard</h1>
             {user && (
               <p className="text-gray-400">
-                Welcome back, ID: {user.user_id} (Role: {user.role})
+                Welcome back, 
               </p>
             )}
           </div>
-          <button
-            onClick={handleLogout}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-          >
-            Logout
-          </button>
         </header>
         
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
