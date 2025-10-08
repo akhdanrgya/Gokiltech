@@ -29,6 +29,7 @@ import {
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { UserIcon } from "@heroicons/react/24/outline";
+import { getUserProfile, UserProfile } from "@/data/user";
 
 export const Navbar = () => {
   const { resolvedTheme } = useTheme();
@@ -36,11 +37,17 @@ export const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [userProfile, setUserProfile] = useState<UserProfile | (null)>(null)
 
   useEffect(() => {
     const token = localStorage.getItem("gokiltech_token");
     if (token) {
       setIsLoggedIn(true);
+      const fetchProfile = async() => {
+        const profileData = await getUserProfile(token)
+        setUserProfile(profileData)
+      }
+      fetchProfile()
     }
   }, []);
 
@@ -99,7 +106,7 @@ export const Navbar = () => {
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className="w-5 h-5"
         >
-          <UserIcon className="text-gray-800 dark:text-white" />
+          <p className="hover:text-purple">{userProfile?.username}</p>
         </button>
 
         {isDropdownOpen && (
