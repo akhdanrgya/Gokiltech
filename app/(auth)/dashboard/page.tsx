@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { getUserProfile, UserProfile } from "@/data/user";
 
-// Tipe data untuk payload token (sesuaikan dengan backend Go lo)
 interface TokenPayload {
   user_id: number;
   role: string;
@@ -14,27 +14,32 @@ interface TokenPayload {
 const DashboardPage = () => {
   const router = useRouter();
   const [user, setUser] = useState<TokenPayload | null>(null);
+  const [userProfile, setUserProfile] = useState<UserProfile | (null)>(null)
 
   useEffect(() => {
-    // Ambil token dari localStorage
     const token = localStorage.getItem("gokiltech_token");
     if (token) {
       try {
-        // "Terjemahkan" token untuk mendapatkan data user
+
         const decodedToken = jwtDecode<TokenPayload>(token);
         setUser(decodedToken);
+
+        const fetchProfile = async() => {
+          const profileData = await getUserProfile(token)
+          setUserProfile(profileData)
+        }
+
+        fetchProfile()
         router.refresh()
       } catch (error) {
         console.error("Invalid token:", error);
-        handleLogout(); // Kalo tokennya aneh/rusak, langsung logout aja
+        handleLogout();
       }
     }
   }, []);
 
   const handleLogout = () => {
-    // Buang "Kunci Gerbang" dari penyimpanan
     localStorage.removeItem("gokiltech_token");
-    // Suruh user keluar dari gedung
     router.push("/signin");
   };
 
@@ -43,10 +48,10 @@ const DashboardPage = () => {
       <div className="max-w-7xl mx-auto">
         <header className="flex flex-wrap justify-between items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Gokiltech Dashboard</h1>
+            <h1 className="text-3xl font-bold">Gokiltech Admin Panel</h1>
             {user && (
               <p className="text-gray-400">
-                Welcome back, 
+                Welcome back, {userProfile?.username}
               </p>
             )}
           </div>
