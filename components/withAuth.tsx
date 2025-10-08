@@ -16,7 +16,7 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
 
       // Kalo ga punya izin, tendang balik ke lobi (halaman login)
       if (!token) {
-        router.replace('/login');
+        router.replace('/signin');
       } else {
         // Kalo punya izin, biarkan komponennya muncul
         setIsLoading(false);

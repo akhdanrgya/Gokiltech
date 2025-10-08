@@ -23,6 +23,7 @@ const DashboardPage = () => {
         // "Terjemahkan" token untuk mendapatkan data user
         const decodedToken = jwtDecode<TokenPayload>(token);
         setUser(decodedToken);
+        router.refresh()
       } catch (error) {
         console.error("Invalid token:", error);
         handleLogout(); // Kalo tokennya aneh/rusak, langsung logout aja
@@ -34,7 +35,7 @@ const DashboardPage = () => {
     // Buang "Kunci Gerbang" dari penyimpanan
     localStorage.removeItem("gokiltech_token");
     // Suruh user keluar dari gedung
-    router.push("/login");
+    router.push("/signin");
   };
 
   return (

@@ -19,7 +19,7 @@ export default function DashboardLayout({
 
     // Kalo ga punya kunci, langsung usir ke halaman login
     if (!token) {
-      router.replace('/login');
+      router.replace('/signin');
     } else {
       // Kalo punya kunci, buka gerbangnya
       setIsVerified(true);
