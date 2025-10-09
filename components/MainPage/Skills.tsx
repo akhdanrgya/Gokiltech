@@ -20,15 +20,18 @@ const Skills = () => {
         gravity={0.56}
         highlightClass="highlighted"
         highlightWords={[
-          "React",
-          "Node",
           "JavaScript",
-          "Tailwind",
-          "Next.JS",
-          "Blender",
+          "TypeScript",
+          "GO",
+          "Python",
+          "Java",
+          "PHP",
+          "C",
+          "C++",
+          "C#"
         ]}
         mouseConstraintStiffness={0.9}
-        text={`React Python Node JavaScript Laravel API Tailwind GIT NODE StyledComponents Next.JS Figma HTML CSS AfterEffect Blender PhotoShop Illustrator SQL MongoDB PosgresSQL Docker`}
+        text={`React Python TypeScript NodeJS Java PHP C C++ C# JavaScript Laravel GO Tailwind GIT Next.JS Figma HTML CSS AfterEffect Blender PhotoShop Illustrator SQL MongoDB PosgresSQL Docker`}
         trigger="hover"
         wireframes={false}
       />

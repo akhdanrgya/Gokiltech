@@ -111,10 +111,6 @@ export const Navbar = () => {
 
         {isDropdownOpen && (
           <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
-            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-              <p className="text-sm text-gray-500 dark:text-gray-400">Welcome</p>
-              <p className="font-semibold text-gray-900 dark:text-white truncate">Gokiltech User</p>
-            </div>
             <a href="/dashboard" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
               Dashboard
             </a>
