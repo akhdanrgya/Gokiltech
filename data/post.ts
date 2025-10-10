@@ -4,6 +4,7 @@ export interface Post {
     title: string;
     content: string;
     category: string;
+    slug: string;
     content_type: 'ARTICLE' | 'PORTFOLIO';
     Images: { image_url: string }[]; // Asumsi gambar ada di sini
 }
