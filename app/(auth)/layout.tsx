@@ -58,7 +58,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header (Mobile) */}
         <header className="md:hidden flex justify-between items-center p-4 bg-white dark:bg-gray-800 border-b dark:border-gray-700">
-            <button onClick={() => setSidebarOpen(!isSidebarOpen)}>
+            <button onClick={() => setSidebarOpen(!isSidebarOpen)} title="xi">
                 <MenuIcon className="h-6 w-6"/>
             </button>
             <a href="/">
