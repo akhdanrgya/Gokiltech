@@ -1,16 +1,51 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { portfolioData } from "@/data/portfolios";
+// 1. Panggil 'sistem saraf' & 'blueprint'-nya, bukan data statisnya lagi
+import { getPortfolioData, ChromaItem } from "@/data/portfolios";
 
 const PortfolioPage = () => {
+  // 2. Siapin 'panggung' kosong & 'tirai' loading
+  const [portfolioItems, setPortfolioItems] = useState<ChromaItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 3. 'Saraf mata' (useEffect) langsung kerja pas panggung disiapin
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        // Minta sistem saraf buat ngambil data live
+        const data = await getPortfolioData();
+        // Tampilkan data di panggung
+        setPortfolioItems(data);
+      } catch (error) {
+        console.error("Gagal menampilkan pertunjukan portofolio:", error);
+      } finally {
+        // Buka tirainya!
+        setIsLoading(false);
+      }
+    };
+
+    fetchPortfolio();
+  }, []); // Cuma jalan sekali pas pertama kali render
+
   const handleCardMove: React.MouseEventHandler<HTMLElement> = (e) => {
     const c = e.currentTarget as HTMLElement;
     const rect = c.getBoundingClientRect();
     c.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
     c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
+
+  // Kalo tirainya masih nutup, tampilkan pesan loading
+  if (isLoading) {
+    return (
+      <section className="px-6 py-8 flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-3xl font-bold animate-pulse">Fetching memories from the mothership...</h1>
+      </section>
+    );
+  }
+
+  console.log(portfolioItems)
 
   return (
     <section className="px-6 py-8 flex flex-col items-center">
@@ -27,7 +62,8 @@ const PortfolioPage = () => {
       </div>
 
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
-        {portfolioData.map((c, i) => (
+        {/* 4. Tampilkan pertunjukan dari data live di panggung, bukan dari koran lama */}
+        {portfolioItems.map((c, i) => (
           <Link
             href={`/portfolio/${c.slug}`}
             key={i}

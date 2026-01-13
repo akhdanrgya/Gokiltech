@@ -22,18 +22,34 @@ import { useTheme } from "next-themes";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-  TwitterIcon,
   GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
   SearchIcon,
   Logo,
 } from "@/components/icons";
 import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { UserIcon } from "@heroicons/react/24/outline";
+import { getUserProfile, UserProfile } from "@/data/user";
 
 export const Navbar = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [userProfile, setUserProfile] = useState<UserProfile | (null)>(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem("gokiltech_token");
+    if (token) {
+      setIsLoggedIn(true);
+      const fetchProfile = async() => {
+        const profileData = await getUserProfile(token)
+        setUserProfile(profileData)
+      }
+      fetchProfile()
+    }
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -65,6 +81,50 @@ export const Navbar = () => {
       type="search"
     />
   );
+
+  const handleLogout = () => {
+    localStorage.removeItem("gokiltech_token");
+    setIsLoggedIn(false);
+    setIsDropdownOpen(false);
+    setIsMobileMenuOpen(false);
+    // Menggunakan window.location sebagai pengganti useRouter
+    window.location.href = "/signin";
+  };
+
+  const AuthSection = () => {
+    if (!isLoggedIn) {
+      return (
+        <a href="/signin" className=" text-white hover:text-purple transition-colors">
+          Login
+        </a>
+      );
+    }
+
+    return (
+      <div className="relative">
+        <button
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          className="w-5 h-5"
+        >
+          <p className="hover:text-purple">{userProfile?.username}</p>
+        </button>
+
+        {isDropdownOpen && (
+          <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
+            <a href="/dashboard" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+              Dashboard
+            </a>
+            <button
+              onClick={handleLogout}
+              className="block w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -98,6 +158,7 @@ export const Navbar = () => {
             ))}
           </ul>
           <ThemeSwitch />
+          <AuthSection />
         </NavbarItem>
       </NavbarContent>
 
