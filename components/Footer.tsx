@@ -14,10 +14,8 @@ import { Image } from "@heroui/image";
 const Logo = () => (
   <Image
     alt="GokilTech Logo"
-    className="invert"
-    height={100}
+    className="invert w-24 sm:w-32 h-auto"
     src="/images/icon.png"
-    width={120}
   />
 );
 const Footer = () => {
@@ -44,7 +42,7 @@ const Footer = () => {
         {/* === SCROLL TO TOP BUTTON === */}
         <button
           aria-label="Scroll to top"
-          className="absolute right-8 -top-6 bg-gray-800 hover:bg-purple-600 text-white rounded-full p-3 transition-colors duration-300"
+          className="absolute right-4 sm:right-8 -top-6 bg-gray-800 hover:bg-purple-600 text-white rounded-full p-3 transition-colors duration-300"
           onClick={scrollToTop}
         >
           <ChevronUpIcon className="h-6 w-6" />

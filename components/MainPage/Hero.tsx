@@ -43,7 +43,7 @@ const Hero = () => {
             animate={{ y: 0 }}
             exit={{ y: "-120%" }}
             initial={{ y: "100%" }}
-            mainClassName="overflow-hidden"
+            mainClassName="overflow-hidden justify-center sm:justify-start"
             rotationInterval={2000}
             splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
             staggerDuration={0.025}
