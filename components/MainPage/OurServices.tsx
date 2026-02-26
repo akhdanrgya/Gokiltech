@@ -30,15 +30,15 @@ const OurServices = () => {
   return (
     <section
       id="services"
-      className="dark:bg-white bg-black text-white py-20 sm:py-24"
+      className="bg-default-50 py-20 sm:py-24 transition-colors duration-300"
     >
       <div className="container mx-auto px-4">
         {/* === HEADER SECTION === */}
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-purple">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-sm">
             Our Featured Services
           </h2>
-          <p className="mt-4 text-lg dark:text-black">
+          <p className="mt-4 text-lg text-default-600 font-medium">
             We push ourselves to be creative in each project. From idea to
             finished product, we ensure you get the best results for your budget
             and vision.
@@ -50,25 +50,25 @@ const OurServices = () => {
           {servicesData.map((service, index) => (
             <div
               key={index}
-              className="flex flex-col rounded-xl bg-[#111111] border border-gray-800 p-8 text-center transition-transform duration-300 hover:border-purple-500 hover:-translate-y-2"
+              className="flex flex-col rounded-2xl bg-background/60 backdrop-blur-md border border-default-200 p-8 text-center transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2"
             >
               <div className="flex-shrink-0">
                 {/* Render the icon we defined in the data */}
                 <service.icon
-                  className="h-12 w-12 mx-auto text-purple-400"
+                  className="h-14 w-14 mx-auto text-purple-500 drop-shadow-md"
                   aria-hidden="true"
                 />
               </div>
               <div className="flex-grow mt-6">
-                <h3 className="text-xl font-medium">{service.title}</h3>
-                <p className="mt-2 text-base text-gray-400">
+                <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
+                <p className="mt-3 text-base text-default-500 leading-relaxed">
                   {service.description}
                 </p>
               </div>
-              <div className="mt-6">
+              <div className="mt-8">
                 <a
                   href="/"
-                  className="inline-block rounded-full border border-gray-600 px-6 py-2 text-sm font-semibold transition-colors duration-300 hover:bg-white hover:text-black"
+                  className="inline-block rounded-full bg-default-100 text-foreground px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500 hover:text-white hover:shadow-lg hover:shadow-purple-500/30"
                 >
                   Learn More
                 </a>

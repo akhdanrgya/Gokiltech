@@ -26,7 +26,7 @@ const Hero = () => {
         <div className="text-5xl sm:text-7xl md:text-8xl font-bold leading-tight">
           <h1>Hello</h1>
           <h1>
-            We Are <span className="text-purple">Gokiltech!</span>
+            We Are <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-sm">Gokiltech!</span>
           </h1>
           <RotatingText
             texts={[
@@ -59,8 +59,9 @@ const Hero = () => {
         </p>
 
         <Button
-          variant="bordered"
-          className="border-purple px-6 py-3 text-base sm:text-lg"
+          variant="shadow"
+          color="secondary"
+          className="bg-gradient-to-tr from-purple-600 to-indigo-500 text-white shadow-lg shadow-purple-500/30 px-8 py-6 text-base sm:text-lg font-semibold tracking-wide hover:-translate-y-1 transition-transform duration-300"
         >
           Let’s Get In Touch!
         </Button>

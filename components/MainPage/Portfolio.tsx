@@ -107,15 +107,15 @@ const Portfolio: React.FC = () => {
                   WebkitBackdropFilter: "grayscale(1)",
                 }}
               />
-              <div className="relative z-10 flex-1 p-[10px] box-border">
+              <div className="relative z-10 flex-1 p-4 box-border">
                 <img
                   src={c.image}
                   alt={c.title}
                   loading="lazy"
-                  className="w-full h-64 object-cover rounded-[10px]"
+                  className="w-full h-72 object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <footer className="relative z-10 p-3 text-white font-sans">
+              <footer className="relative z-10 px-5 pb-5 pt-2 text-white font-sans">
                 <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
                 <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
               </footer>
@@ -125,7 +125,7 @@ const Portfolio: React.FC = () => {
         <div className="flex justify-center">
           <a
             href="/portfolio"
-            className="px-6 py-3 border border-white dark:border-black rounded-3xl font-semibold hover:bg-purple transition"
+            className="px-8 py-3 rounded-full font-semibold bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 hover:-translate-y-1 transition-all duration-300 ring-1 ring-white/10"
           >
             See More
           </a>

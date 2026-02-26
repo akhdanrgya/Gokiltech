@@ -2,13 +2,13 @@ import FallingText from "@/components/FallingText";
 
 const Skills = () => {
   return (
-    <section className="flex flex-col items-center justify-center h-1/5 px-6 my-24">
-      <div className="container flex flex-col items-center gap-10 mb-16 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
-          Skills and <span className="text-purple">Tools</span>
+    <section className="flex flex-col items-center justify-center py-24 px-6 my-10">
+      <div className="container flex flex-col items-center gap-6 mb-16 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+          Skills and <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-sm">Tools</span>
         </h1>
-        <p className="text-base sm:text-lg md:text-xl max-w-2xl">
-          For a more <span className="text-purple">detailed</span> overview,
+        <p className="text-base sm:text-lg md:text-xl max-w-2xl text-default-600 font-medium">
+          For a more <span className="text-purple-500 font-semibold">detailed</span> overview,
           please feel free to check the tools that were used on a per-project
           basis.
         </p>
