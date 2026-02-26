@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 
 import { portfolioData } from "@/data/portfolios";
+import PortfolioDetailView from "@/components/PortfolioPage/PortfolioDetailView";
 
 interface PortfolioDetailProps {
   params: Promise<{ slug: string }>;
@@ -19,17 +19,5 @@ export default async function PortfolioDetail({
 
   if (!project) return notFound();
 
-  return (
-    <section className="px-6 py-12 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
-      <Image
-        alt={project.title}
-        className="rounded-lg mb-6"
-        height={500}
-        src={project.image}
-        width={800}
-      />
-      <p className="text-lg">{project.description}</p>
-    </section>
-  );
+  return <PortfolioDetailView project={project} />;
 }
