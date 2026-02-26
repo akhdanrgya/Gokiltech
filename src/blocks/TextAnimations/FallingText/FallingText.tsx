@@ -39,6 +39,7 @@ const FallingText: React.FC<FallingTextProps> = ({
     const newHTML = words
       .map((word) => {
         const isHighlighted = highlightWords.some((hw) => word.startsWith(hw));
+
         return `<span
           class="inline-block mx-[2px] select-none ${
             isHighlighted ? "text-cyan-500 font-bold" : ""
@@ -55,6 +56,7 @@ const FallingText: React.FC<FallingTextProps> = ({
   useEffect(() => {
     if (trigger === "auto") {
       setEffectStarted(true);
+
       return;
     }
     if (trigger === "scroll" && containerRef.current) {
@@ -67,7 +69,9 @@ const FallingText: React.FC<FallingTextProps> = ({
         },
         { threshold: 0.1 },
       );
+
       observer.observe(containerRef.current);
+
       return () => observer.disconnect();
     }
   }, [trigger]);
@@ -87,6 +91,7 @@ const FallingText: React.FC<FallingTextProps> = ({
     if (width <= 0 || height <= 0) return;
 
     const engine = Engine.create();
+
     engine.world.gravity.y = gravity;
 
     const render = Render.create({
@@ -147,6 +152,7 @@ const FallingText: React.FC<FallingTextProps> = ({
         frictionAir: 0.01,
         friction: 0.2,
       });
+
       Matter.Body.setVelocity(body, {
         x: (Math.random() - 0.5) * 5,
         y: 0,
@@ -175,6 +181,7 @@ const FallingText: React.FC<FallingTextProps> = ({
         render: { visible: false },
       },
     });
+
     render.mouse = mouse;
 
     World.add(engine.world, [
@@ -187,12 +194,14 @@ const FallingText: React.FC<FallingTextProps> = ({
     ]);
 
     const runner = Runner.create();
+
     Runner.run(runner, engine);
     Render.run(render);
 
     const updateLoop = () => {
       wordBodies.forEach(({ body, elem }) => {
         const { x, y } = body.position;
+
         elem.style.left = `${x}px`;
         elem.style.top = `${y}px`;
         elem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`;
@@ -200,6 +209,7 @@ const FallingText: React.FC<FallingTextProps> = ({
       Matter.Engine.update(engine);
       requestAnimationFrame(updateLoop);
     };
+
     updateLoop();
 
     return () => {
@@ -241,7 +251,7 @@ const FallingText: React.FC<FallingTextProps> = ({
         }}
       />
 
-      <div className="absolute top-0 left-0 z-0" ref={canvasContainerRef} />
+      <div ref={canvasContainerRef} className="absolute top-0 left-0 z-0" />
     </div>
   );
 };

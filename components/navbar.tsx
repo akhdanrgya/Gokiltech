@@ -9,7 +9,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import { Button } from "@heroui/button";
 import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
@@ -18,18 +17,11 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import { Image } from "@heroui/image";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-  Logo,
-} from "@/components/icons";
-import { useEffect, useState } from "react";
+import { GithubIcon, SearchIcon } from "@/components/icons";
 
 export const Navbar = () => {
   const { resolvedTheme } = useTheme();
@@ -71,7 +63,7 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image src={logoSrc} alt="Logo Gokiltech" height={100} />
+            <Image alt="Logo Gokiltech" height={100} src={logoSrc} />
           </NextLink>
         </NavbarBrand>
       </NavbarContent>

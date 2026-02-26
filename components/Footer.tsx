@@ -13,11 +13,11 @@ import { Image } from "@heroui/image";
 
 const Logo = () => (
   <Image
-    src="/images/icon.png"
     alt="GokilTech Logo"
-    width={120}
-    height={100}
     className="invert"
+    height={100}
+    src="/images/icon.png"
+    width={120}
   />
 );
 const Footer = () => {
@@ -43,16 +43,16 @@ const Footer = () => {
       <div className="container mx-auto px-4 pt-16 pb-8">
         {/* === SCROLL TO TOP BUTTON === */}
         <button
-          onClick={scrollToTop}
-          className="absolute right-8 -top-6 bg-gray-800 hover:bg-purple-600 text-white rounded-full p-3 transition-colors duration-300"
           aria-label="Scroll to top"
+          className="absolute right-8 -top-6 bg-gray-800 hover:bg-purple-600 text-white rounded-full p-3 transition-colors duration-300"
+          onClick={scrollToTop}
         >
           <ChevronUpIcon className="h-6 w-6" />
         </button>
 
         {/* === MAIN FOOTER CONTENT === */}
         <div className="flex flex-col items-center text-center">
-          <a href="/" className="mb-6">
+          <a className="mb-6" href="/">
             <Logo />
           </a>
           <p className="font-semibold text-white">Gokiltech</p>{" "}
@@ -68,9 +68,9 @@ const Footer = () => {
             {socialLinks.map((social, index) => (
               <a
                 key={index}
-                href={social.href}
-                className="text-gray-400 hover:text-white transition-colors duration-300"
                 aria-label={`Follow us on ${social.icon.name}`}
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+                href={social.href}
               >
                 <social.icon size={20} />
               </a>
@@ -87,8 +87,8 @@ const Footer = () => {
             {footerNavLinks.map((link) => (
               <a
                 key={link}
-                href="/"
                 className="hover:text-white transition-colors duration-300"
+                href={`/${link.toLowerCase() === "home" ? "" : link.toLowerCase()}`}
               >
                 {link}
               </a>

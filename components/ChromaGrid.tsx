@@ -52,6 +52,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({ items, className = "" }) => {
   const handleCardMove: React.MouseEventHandler<HTMLElement> = (e) => {
     const c = e.currentTarget as HTMLElement;
     const rect = c.getBoundingClientRect();
+
     c.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
     c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
@@ -64,8 +65,6 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({ items, className = "" }) => {
       {data.map((c, i) => (
         <button
           key={i}
-          onMouseMove={handleCardMove}
-          onClick={() => handleCardClick(c.url)}
           className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
           style={
             {
@@ -74,6 +73,8 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({ items, className = "" }) => {
               "--spotlight-color": "rgba(255,255,255,0.3)",
             } as React.CSSProperties
           }
+          onClick={() => handleCardClick(c.url)}
+          onMouseMove={handleCardMove}
         >
           {/* Efek spotlight putih per kartu (tetap dipertahankan) */}
           <div
@@ -96,10 +97,10 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({ items, className = "" }) => {
 
           <div className="relative z-10 flex-1 p-[10px] box-border">
             <img
-              src={c.image}
               alt={c.title}
-              loading="lazy"
               className="w-full h-64 object-cover rounded-[10px]"
+              loading="lazy"
+              src={c.image}
             />
           </div>
           <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">

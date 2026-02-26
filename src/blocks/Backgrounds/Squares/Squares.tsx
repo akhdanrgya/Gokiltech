@@ -35,6 +35,7 @@ const Squares: React.FC<SquaresProps> = ({
 
   useEffect(() => {
     const canvas = canvasRef.current;
+
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
@@ -84,6 +85,7 @@ const Squares: React.FC<SquaresProps> = ({
         canvas.height / 2,
         Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2,
       );
+
       gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
       gradient.addColorStop(1, "#060606");
 
@@ -93,6 +95,7 @@ const Squares: React.FC<SquaresProps> = ({
 
     const updateAnimation = () => {
       const effectiveSpeed = Math.max(speed, 0.1);
+
       switch (direction) {
         case "right":
           gridOffset.current.x =
@@ -164,12 +167,7 @@ const Squares: React.FC<SquaresProps> = ({
     };
   }, [direction, speed, borderColor, hoverFillColor, squareSize]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full border-none block"
-    ></canvas>
-  );
+  return <canvas ref={canvasRef} className="w-full h-full border-none block" />;
 };
 
 export default Squares;

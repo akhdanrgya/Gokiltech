@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import {
   CommandLineIcon,
   DevicePhoneMobileIcon,
   CubeIcon,
 } from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 
 const servicesData = [
   {
@@ -29,12 +31,18 @@ const servicesData = [
 const OurServices = () => {
   return (
     <section
-      id="services"
       className="bg-default-50 py-20 sm:py-24 transition-colors duration-300"
+      id="services"
     >
       <div className="container mx-auto px-4">
         {/* === HEADER SECTION === */}
-        <div className="text-center max-w-3xl mx-auto">
+        <motion.div
+          className="text-center max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-sm">
             Our Featured Services
           </h2>
@@ -43,39 +51,62 @@ const OurServices = () => {
             finished product, we ensure you get the best results for your budget
             and vision.
           </p>
-        </div>
+        </motion.div>
 
         {/* === SERVICE CARDS (GRID) === */}
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+          viewport={{ once: true, amount: 0.1 }}
+          whileInView="visible"
+        >
           {servicesData.map((service, index) => (
-            <div
+            <motion.div
               key={index}
               className="flex flex-col rounded-2xl bg-background/60 backdrop-blur-md border border-default-200 p-8 text-center transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2"
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut" },
+                },
+              }}
             >
               <div className="flex-shrink-0">
                 {/* Render the icon we defined in the data */}
                 <service.icon
-                  className="h-14 w-14 mx-auto text-purple-500 drop-shadow-md"
                   aria-hidden="true"
+                  className="h-14 w-14 mx-auto text-purple-500 drop-shadow-md"
                 />
               </div>
               <div className="flex-grow mt-6">
-                <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
+                <h3 className="text-xl font-bold text-foreground">
+                  {service.title}
+                </h3>
                 <p className="mt-3 text-base text-default-500 leading-relaxed">
                   {service.description}
                 </p>
               </div>
               <div className="mt-8">
                 <a
-                  href="/"
                   className="inline-block rounded-full bg-default-100 text-foreground px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-500 hover:text-white hover:shadow-lg hover:shadow-purple-500/30"
+                  href="/"
                 >
                   Learn More
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

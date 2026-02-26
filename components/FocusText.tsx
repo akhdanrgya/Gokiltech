@@ -82,11 +82,12 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
 
   return (
     <div
-      className="relative flex gap-4 justify-start items-center flex-wrap"
       ref={containerRef}
+      className="relative flex gap-4 justify-start items-center flex-wrap"
     >
       {words.map((word, index) => {
         const isActive = index === currentIndex;
+
         return (
           <span
             key={index}
@@ -115,7 +116,6 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
       })}
 
       <motion.div
-        className="absolute top-0 left-0 pointer-events-none box-border border-0"
         animate={{
           x: focusRect.x,
           y: focusRect.y,
@@ -123,15 +123,16 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
           height: focusRect.height,
           opacity: currentIndex >= 0 ? 1 : 0,
         }}
-        transition={{
-          duration: animationDuration,
-        }}
+        className="absolute top-0 left-0 pointer-events-none box-border border-0"
         style={
           {
             "--border-color": borderColor,
             "--glow-color": glowColor,
           } as React.CSSProperties
         }
+        transition={{
+          duration: animationDuration,
+        }}
       >
         <span
           className="absolute w-4 h-4 border-[3px] rounded-[3px] top-[-10px] left-[-10px] border-r-0 border-b-0"
@@ -139,28 +140,28 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
         <span
           className="absolute w-4 h-4 border-[3px] rounded-[3px] top-[-10px] right-[-10px] border-l-0 border-b-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
         <span
           className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-[-10px] left-[-10px] border-r-0 border-t-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
         <span
           className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-[-10px] right-[-10px] border-l-0 border-t-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
       </motion.div>
     </div>
   );

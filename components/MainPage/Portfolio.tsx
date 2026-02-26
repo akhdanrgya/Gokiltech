@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 // Interface untuk tipe data item portofolio, agar konsisten
 export interface ChromaItem {
@@ -64,6 +65,7 @@ const Portfolio: React.FC = () => {
   const handleCardMove: React.MouseEventHandler<HTMLElement> = (e) => {
     const c = e.currentTarget as HTMLElement;
     const rect = c.getBoundingClientRect();
+
     c.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
     c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
@@ -75,13 +77,24 @@ const Portfolio: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-5xl font-bold text-center mb-10">Portfolio</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8"
+          initial="hidden"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+          viewport={{ once: true, amount: 0.1 }}
+          whileInView="visible"
+        >
           {portfolioData.map((c, i) => (
             // PERBAIKAN: Mengganti <article> dengan <button> untuk aksesibilitas
-            <button
+            <motion.button
               key={i}
-              onMouseMove={handleCardMove}
-              onClick={() => handleCardClick(c.slug)}
               className="group relative flex flex-col text-left rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
               style={
                 {
@@ -90,6 +103,16 @@ const Portfolio: React.FC = () => {
                   "--spotlight-color": "rgba(255,255,255,0.3)",
                 } as React.CSSProperties
               }
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut" },
+                },
+              }}
+              onClick={() => handleCardClick(c.slug)}
+              onMouseMove={handleCardMove}
             >
               {/* Efek spotlight */}
               <div
@@ -109,27 +132,33 @@ const Portfolio: React.FC = () => {
               />
               <div className="relative z-10 flex-1 p-4 box-border">
                 <img
-                  src={c.image}
                   alt={c.title}
-                  loading="lazy"
                   className="w-full h-72 object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  src={c.image}
                 />
               </div>
               <footer className="relative z-10 px-5 pb-5 pt-2 text-white font-sans">
                 <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
                 <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
               </footer>
-            </button>
+            </motion.button>
           ))}
-        </div>
-        <div className="flex justify-center">
+        </motion.div>
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
           <a
-            href="/portfolio"
             className="px-8 py-3 rounded-full font-semibold bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 hover:-translate-y-1 transition-all duration-300 ring-1 ring-white/10"
+            href="/portfolio"
           >
             See More
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

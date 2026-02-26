@@ -37,6 +37,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
 
   useEffect(() => {
     const el = ref.current;
+
     if (!el) return;
 
     const axis = direction === "horizontal" ? "x" : "y";
