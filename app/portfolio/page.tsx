@@ -53,13 +53,13 @@ const PortfolioPage = () => {
         {portfolioData.map((c, i) => (
           <MotionLink
             key={i}
-            className="group relative flex flex-col rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+            className="group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-2 cursor-pointer w-full"
             href={`/portfolio/${c.slug}`}
             style={
               {
                 "--card-border": c.borderColor || "transparent",
                 background: c.gradient,
-                "--spotlight-color": "rgba(255,255,255,0.3)",
+                "--spotlight-color": "rgba(255,255,255,0.2)",
               } as React.CSSProperties
             }
             variants={{
@@ -77,28 +77,53 @@ const PortfolioPage = () => {
               className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
               style={{
                 background:
-                  "radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)",
+                  "radial-gradient(circle 800px at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 40%)",
               }}
             />
             {/* Efek masking grayscale */}
             <div
-              className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+              className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-500 opacity-100 group-hover:opacity-0"
               style={{
-                backdropFilter: "grayscale(1)",
-                WebkitBackdropFilter: "grayscale(1)",
+                backdropFilter: "grayscale(1) contrast(1.1)",
+                WebkitBackdropFilter: "grayscale(1) contrast(1.1)",
               }}
             />
-            <div className="relative z-10 flex-1 p-[10px] box-border">
-              <img
-                alt={c.title}
-                className="w-full h-64 object-cover rounded-[10px]"
-                loading="lazy"
-                src={c.image}
-              />
+            <div className="relative z-10 w-full p-5 flex-1">
+              <div className="w-full h-64 md:h-80 relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10">
+                <img
+                  alt={c.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
+                  loading="lazy"
+                  src={c.image}
+                />
+              </div>
             </div>
-            <footer className="relative z-10 p-3 text-white font-sans">
-              <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
-              <p className="m-0 text-[0.85rem] text-white/80">{c.subtitle}</p>
+            <footer className="relative z-10 px-6 pb-6 pt-2 text-white font-sans flex items-end justify-between w-full">
+              <div className="flex-1 pr-4">
+                <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-1.5">
+                  {c.subtitle}
+                </p>
+                <h3 className="text-2xl font-extrabold leading-tight text-white drop-shadow-md">
+                  {c.title}
+                </h3>
+              </div>
+
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 text-white shadow-xl">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
             </footer>
           </MotionLink>
         ))}
