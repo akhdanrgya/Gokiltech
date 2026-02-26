@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useInView, useMotionValue, animate } from "framer-motion";
 
 const statsData = [
   { value: 2, label: "Operated Years" },
@@ -8,6 +8,33 @@ const statsData = [
   { value: 15, label: "Amazing Projects" },
   { value: 20, label: "Professionals" },
 ];
+
+const AnimatedNumber = ({ value }: { value: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionValue = useMotionValue(0);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(motionValue, value, {
+        duration: 2,
+        ease: "easeOut",
+      });
+      return controls.stop;
+    }
+  }, [isInView, value, motionValue]);
+
+  useEffect(() => {
+    const unsubscribe = motionValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = Intl.NumberFormat("en-US").format(Math.floor(latest));
+      }
+    });
+    return unsubscribe;
+  }, [motionValue]);
+
+  return <span ref={ref}>0</span>;
+};
 
 const StatsCounter = () => {
   return (
@@ -37,7 +64,7 @@ const StatsCounter = () => {
               }}
             >
               <h3 className="text-4xl font-bold sm:text-5xl text-purple-500 drop-shadow-sm">
-                {stat.value}+
+                <AnimatedNumber value={stat.value} />+
               </h3>
               <p className="mt-2 text-base sm:text-lg text-white/80 dark:text-black/80 font-medium">
                 {stat.label}
