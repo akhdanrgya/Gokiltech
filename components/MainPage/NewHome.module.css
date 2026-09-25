@@ -76,23 +76,14 @@
   width: max-content;
   transform: translateX(-50%);
   font:
-    800 clamp(78px, 14vw, 210px) / 0.8 var(--font-sans),
+    700 clamp(64px, 13vw, 190px) / 1.15 var(--font-sans),
     sans-serif;
-  letter-spacing: -0.105em;
+  letter-spacing: -0.055em;
   color: transparent;
-  -webkit-text-stroke: 2px #f7f7f5;
-  text-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
-}
-.wordmark:after {
-  content: "";
-  position: absolute;
-  left: 2%;
-  right: -3%;
-  bottom: -25%;
-  height: 22%;
-  border-bottom: 5px solid #f7f7f5;
-  border-radius: 50%;
-  transform: rotate(1deg);
+  background: linear-gradient(to right, #a855f7, #6366f1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: drop-shadow(0 4px 18px rgba(139, 92, 246, 0.12));
 }
 .heroCopy {
   position: relative;

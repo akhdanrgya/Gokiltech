@@ -136,12 +136,12 @@ export default function NewHome() {
           initial={
             reduceMotion
               ? false
-              : { x: "-50%", opacity: 0, scale: 0.92, rotate: -5 }
+              : { x: "-50%", opacity: 0, scale: 0.92 }
           }
-          animate={{ x: "-50%", opacity: 1, scale: 1, rotate: -2 }}
+          animate={{ x: "-50%", opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          GOKILTECH
+          Gokiltech!
         </motion.div>
         <div className={styles.heroCopy} data-parallax="0.13">
           <span className={styles.status}>
