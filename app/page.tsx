@@ -1,17 +1,5 @@
-import Hero from "@/components/MainPage/Hero";
-import Skills from "@/components/MainPage/Skills";
-import Portfolio from "@/components/MainPage/Portfolio";
-import OurServices from "@/components/MainPage/OurServices";
+import NewHome from "@/components/MainPage/NewHome";
 
-const Home = () => {
-  return (
-    <>
-      <Hero />
-      <Portfolio />
-      <Skills />
-      <OurServices />
-    </>
-  );
-};
-
-export default Home;
+export default function Home() {
+  return <NewHome />;
+}
