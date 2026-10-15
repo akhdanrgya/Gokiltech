@@ -1,9 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useSiteReducedMotion } from "@/components/MotionPreferences";
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  const reduced = useReducedMotion();
+  const reduced = useSiteReducedMotion();
   return (
     <motion.div
       initial={reduced ? false : { opacity: 0.8, filter: "blur(3px)" }}

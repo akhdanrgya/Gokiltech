@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useSiteReducedMotion } from "@/components/MotionPreferences";
 
 import styles from "./NewHome.module.css";
 
@@ -58,7 +59,7 @@ const revealPreset = {
 };
 
 export default function NewHome() {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSiteReducedMotion();
   const reveal = {
     ...revealPreset,
     initial: reduceMotion ? (false as const) : revealPreset.initial,
@@ -77,7 +78,6 @@ export default function NewHome() {
         element.querySelectorAll<HTMLElement>("[data-parallax]"),
       ),
     }));
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
 
     const update = () => {
@@ -95,7 +95,7 @@ export default function NewHome() {
           Math.min(window.innerHeight, distance),
         );
         layers.forEach((layer) => {
-          const offset = preference.matches
+          const offset = reduceMotion
             ? 0
             : travel * Number(layer.dataset.parallax) * (mobile ? 0.35 : 1);
           layer.style.setProperty(
@@ -109,21 +109,23 @@ export default function NewHome() {
       if (!frame) frame = requestAnimationFrame(update);
     };
     update();
-    window.addEventListener("scroll", schedule, { passive: true });
+    // Capture also receives scroll events from nested layout containers.
+    window.addEventListener("scroll", schedule, {
+      passive: true,
+      capture: true,
+    });
     window.addEventListener("resize", schedule);
-    preference.addEventListener("change", schedule);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("scroll", schedule, true);
       window.removeEventListener("resize", schedule);
-      preference.removeEventListener("change", schedule);
       groups.forEach(({ layers }) =>
         layers.forEach((layer) =>
           layer.style.removeProperty("--parallax-offset"),
         ),
       );
     };
-  }, []);
+  }, [reduceMotion]);
 
   return (
     <div ref={pageRef} className={styles.page}>
@@ -134,9 +136,7 @@ export default function NewHome() {
           data-parallax="0.32"
           className={styles.wordmark}
           initial={
-            reduceMotion
-              ? false
-              : { x: "-50%", opacity: 0, scale: 0.92 }
+            reduceMotion ? false : { x: "-50%", opacity: 0, scale: 0.92 }
           }
           animate={{ x: "-50%", opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}

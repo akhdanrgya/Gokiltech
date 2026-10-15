@@ -519,21 +519,15 @@
   .footerBottom {
     flex-direction: column;
   }
-  .parallax > div {
-    transform: none !important;
-    filter: none !important;
-  }
   .detailHero h1 {
     font-size: 12vw;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .surface * {
-    transition: none !important;
-    animation: none !important;
-  }
-  .parallax > div {
-    transform: none !important;
-    filter: none !important;
-  }
+:global([data-site-motion="reduced"]) .surface * {
+  transition: none !important;
+  animation: none !important;
+}
+:global([data-site-motion="reduced"]) .parallax > div {
+  transform: none !important;
+  filter: none !important;
 }

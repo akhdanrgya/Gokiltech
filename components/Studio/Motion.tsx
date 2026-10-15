@@ -1,13 +1,9 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import s from "./Studio.module.css";
+import { useSiteReducedMotion } from "@/components/MotionPreferences";
 
 export function Reveal({
   children,
@@ -16,7 +12,7 @@ export function Reveal({
   children: ReactNode;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useSiteReducedMotion();
   return (
     <motion.div
       className={className}
@@ -42,7 +38,7 @@ export function Parallax({
   blur?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
+  const reduced = useSiteReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],

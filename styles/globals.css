@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.motion-preference {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 100;
+  padding: 10px 16px;
+  border: 1px solid #80778f;
+  border-radius: 999px;
+  background: #19151f;
+  color: #fff;
+  font:
+    500 12px/1.4 var(--font-sans),
+    sans-serif;
+  cursor: pointer;
+}
+
+.motion-preference:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 4px;
+}

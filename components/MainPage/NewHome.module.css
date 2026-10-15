@@ -6,7 +6,7 @@
   position: relative;
   background: var(--ink);
   color: #f7f7f5;
-  overflow: hidden;
+  overflow: clip;
   font-family: var(--font-sans), sans-serif;
 }
 .page * {
@@ -261,7 +261,7 @@
   border-radius: 18px;
   background: #e9e9ed;
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
-  transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .browserMain {
   right: 0;
@@ -608,13 +608,11 @@
   translate: 0 var(--parallax-offset, 0px);
   will-change: translate;
 }
-@media (prefers-reduced-motion: reduce) {
-  .page * {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
-  .page [data-parallax] {
-    translate: none;
-    will-change: auto;
-  }
+:global([data-site-motion="reduced"]) .page * {
+  scroll-behavior: auto !important;
+  transition: none !important;
+}
+:global([data-site-motion="reduced"]) .page [data-parallax] {
+  translate: none;
+  will-change: auto;
 }
